@@ -1,10 +1,14 @@
 ﻿using FamilyBudget.DAL;
 using FamilyBudget.Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace FamilyBudget.WebApp.Pages.Expenses
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly FamilyBudgetDbContext _context;
@@ -16,6 +20,7 @@ namespace FamilyBudget.WebApp.Pages.Expenses
 
         public IActionResult OnGet()
         {
+            ViewData["FamilyBudgetUserId"] = new SelectList(_context.Users, "Id", "Id");
             return Page();
         }
 
@@ -30,6 +35,13 @@ namespace FamilyBudget.WebApp.Pages.Expenses
             {
                 return Page();
             }
+
+            var currentUserId = await _context.Users
+                .Where(x => x.Email == User.Identity.Name)
+                .Select(x => x.Id)
+                .FirstAsync();
+
+            Expense.FamilyBudgetUserId = currentUserId;
 
             _context.Expenses.Add(Expense);
             await _context.SaveChangesAsync();

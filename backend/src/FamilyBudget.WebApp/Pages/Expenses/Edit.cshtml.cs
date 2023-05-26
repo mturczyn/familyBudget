@@ -36,6 +36,7 @@ namespace FamilyBudget.WebApp.Pages.Expenses
                 return NotFound();
             }
             Expense = expense;
+           ViewData["FamilyBudgetUserId"] = new SelectList(_context.Users, "Id", "Id");
             return Page();
         }
 

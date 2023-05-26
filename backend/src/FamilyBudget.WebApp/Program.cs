@@ -1,7 +1,6 @@
+using FamilyBudget.DAL;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using FamilyBudget.DAL;
-using FamilyBudget.WebApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +12,7 @@ builder.Services.AddDbContext<FamilyBudgetDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<FamilyBudgetUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<FamilyBudgetDbContext>();
 
 builder.Services.AddRazorPages();

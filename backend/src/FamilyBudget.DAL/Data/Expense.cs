@@ -18,8 +18,8 @@ public class Expense
 
     public double AmountSpent { get; set; }
 
-    [ForeignKey(nameof(IdentityUser))]
-    public int IdentityUserId { get; set; }
+    [ForeignKey(nameof(FamilyBudgetUser))]
+    public Guid? FamilyBudgetUserId { get; set; }
 
-    public IdentityUser IdentityUser { get; set; }
+    public FamilyBudgetUser? FamilyBudgetUser { get; set; }
 }
