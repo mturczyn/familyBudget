@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,7 +19,7 @@ public class Expense
     public double AmountSpent { get; set; }
 
     [ForeignKey(nameof(IdentityUser))]
-    public int IdentityUserId { get;set; }
+    public int IdentityUserId { get; set; }
 
     public IdentityUser IdentityUser { get; set; }
 }

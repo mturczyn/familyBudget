@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace FamilyBudget.DAL
 {
-    public class FamilyBudgetDbContext : IdentityDbContext
+    public class FamilyBudgetDbContext : IdentityDbContext<FamilyBudgetUser>
     {
         public FamilyBudgetDbContext(DbContextOptions<FamilyBudgetDbContext> options)
             : base(options)
