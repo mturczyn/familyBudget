@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\FamilyBudget.Domain\FamilyBudget.Domain.csproj" />
     <ProjectReference Include="..\FamilyBudget.DAL\FamilyBudget.DAL.csproj" />
   </ItemGroup>
 

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyBudget.WebApp", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyBudget.DAL", "src\FamilyBudget.DAL\FamilyBudget.DAL.csproj", "{773E5938-4682-49C9-B150-FFC1F3BC7624}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyBudget.Domain", "FamilyBudget.Domain\FamilyBudget.Domain.csproj", "{260BD184-43D7-464F-9BCC-F671FA95A6DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{773E5938-4682-49C9-B150-FFC1F3BC7624}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{773E5938-4682-49C9-B150-FFC1F3BC7624}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{773E5938-4682-49C9-B150-FFC1F3BC7624}.Release|Any CPU.Build.0 = Release|Any CPU
+		{260BD184-43D7-464F-9BCC-F671FA95A6DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{260BD184-43D7-464F-9BCC-F671FA95A6DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{260BD184-43D7-464F-9BCC-F671FA95A6DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{260BD184-43D7-464F-9BCC-F671FA95A6DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
