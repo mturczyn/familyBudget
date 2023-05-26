@@ -14,6 +14,7 @@ namespace FamilyBudget.DAL
 
         public DbSet<Expense> Expenses { get; set; }
     }
+
     public class FamilyBudgetDbContextFactory : IDesignTimeDbContextFactory<FamilyBudgetDbContext>
     {
         public FamilyBudgetDbContext CreateDbContext(string[] args)

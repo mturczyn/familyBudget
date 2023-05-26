@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using FamilyBudget.DAL;
+using FamilyBudget.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using FamilyBudget.DAL;
-using FamilyBudget.Domain;
 
 namespace FamilyBudget.WebApp.Pages.Expenses
 {
     public class CreateModel : PageModel
     {
-        private readonly FamilyBudget.DAL.FamilyBudgetDbContext _context;
+        private readonly FamilyBudgetDbContext _context;
 
-        public CreateModel(FamilyBudget.DAL.FamilyBudgetDbContext context)
+        public CreateModel(FamilyBudgetDbContext context)
         {
             _context = context;
         }
@@ -26,12 +21,12 @@ namespace FamilyBudget.WebApp.Pages.Expenses
 
         [BindProperty]
         public Expense Expense { get; set; } = default!;
-        
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Expenses == null || Expense == null)
+            if (!ModelState.IsValid || _context.Expenses == null || Expense == null)
             {
                 return Page();
             }
