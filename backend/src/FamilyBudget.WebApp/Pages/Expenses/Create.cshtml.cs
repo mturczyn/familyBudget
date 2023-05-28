@@ -1,5 +1,5 @@
 ﻿using FamilyBudget.DAL;
-using FamilyBudget.Domain;
+using FamilyBudget.DAL.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -26,7 +26,6 @@ namespace FamilyBudget.WebApp.Pages.Expenses
 
         [BindProperty]
         public Expense Expense { get; set; } = default!;
-
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()

@@ -1,4 +1,4 @@
-﻿using FamilyBudget.Domain;
+﻿using FamilyBudget.DAL.Data;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
@@ -8,6 +8,8 @@ public class FamilyBudgetUser : IdentityUser<Guid>
     public override Guid Id { get; set; }
 
     public ICollection<Expense> Expenses { get; set; }
+
+    public ICollection<UserExpenseSharingOption> ExpensesSharedWith { get; set; }
 
     public virtual ICollection<IdentityUserClaim<Guid>> Claims { get; set; }
 

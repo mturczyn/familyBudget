@@ -10,30 +10,40 @@
 
 <p>
     <a asp-page="Create">Create New</a>
+    <a asp-page="ShareWithOthers">Share with other users</a>
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by description or title: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" /> |
+                <a asp-action="Index">Back to Full List</a>
+            </p>
+        </div>
+    </form>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Expense[0].Title)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParam"]">@Html.DisplayNameFor(model => model.Expenses[0].Title)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Expense[0].Description)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DescriptionSortParam"]">@Html.DisplayNameFor(model => model.Expenses[0].Description)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Expense[0].Category)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["CategorySortParam"]">@Html.DisplayNameFor(model => model.Expenses[0].Category)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Expense[0].AmountSpent)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["AmountSpentSortParam"]">@Html.DisplayNameFor(model => model.Expenses[0].AmountSpent)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Expense[0].FamilyBudgetUser)
+                @Html.DisplayNameFor(model => model.Expenses[0].FamilyBudgetUser.UserName)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Expense) {
+@foreach (var item in Model.Expenses) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -48,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.AmountSpent)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FamilyBudgetUser.Id)
+                @Html.DisplayFor(modelItem => item.FamilyBudgetUser.UserName)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
@@ -59,3 +69,23 @@
 }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.Expenses.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Expenses.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.Expenses.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.Expenses.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

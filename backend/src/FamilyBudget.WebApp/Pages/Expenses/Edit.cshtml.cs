@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using FamilyBudget.DAL;
+using FamilyBudget.DAL.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using FamilyBudget.DAL;
-using FamilyBudget.Domain;
 
 namespace FamilyBudget.WebApp.Pages.Expenses
 {
     public class EditModel : PageModel
     {
-        private readonly FamilyBudget.DAL.FamilyBudgetDbContext _context;
+        private readonly FamilyBudgetDbContext _context;
 
-        public EditModel(FamilyBudget.DAL.FamilyBudgetDbContext context)
+        public EditModel(FamilyBudgetDbContext context)
         {
             _context = context;
         }
@@ -30,13 +26,12 @@ namespace FamilyBudget.WebApp.Pages.Expenses
                 return NotFound();
             }
 
-            var expense =  await _context.Expenses.FirstOrDefaultAsync(m => m.Id == id);
+            var expense = await _context.Expenses.FirstOrDefaultAsync(m => m.Id == id);
             if (expense == null)
             {
                 return NotFound();
             }
             Expense = expense;
-           ViewData["FamilyBudgetUserId"] = new SelectList(_context.Users, "Id", "Id");
             return Page();
         }
 
@@ -72,7 +67,7 @@ namespace FamilyBudget.WebApp.Pages.Expenses
 
         private bool ExpenseExists(Guid id)
         {
-          return (_context.Expenses?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Expenses?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

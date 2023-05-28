@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using FamilyBudget.DAL;
-using FamilyBudget.Domain;
+using FamilyBudget.DAL.Data;
 
 namespace FamilyBudget.WebApp.Pages.Expenses
 {
