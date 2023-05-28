@@ -23,4 +23,12 @@
     <ProjectReference Include="..\FamilyBudget.DAL\FamilyBudget.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\MT\source\repos\familyBudget\backend\src\FamilyBudget.WebApp\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\MT\source\repos\familyBudget\backend\src\FamilyBudget.WebApp\.editorconfig" />
+  </ItemGroup>
+
 </Project>

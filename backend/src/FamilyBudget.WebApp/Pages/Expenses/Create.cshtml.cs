@@ -6,49 +6,48 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace FamilyBudget.WebApp.Pages.Expenses
+namespace FamilyBudget.WebApp.Pages.Expenses;
+
+[Authorize]
+public class CreateModel : PageModel
 {
-    [Authorize]
-    public class CreateModel : PageModel
+    private readonly FamilyBudgetDbContext _context;
+
+    public CreateModel(FamilyBudgetDbContext context)
     {
-        private readonly FamilyBudgetDbContext _context;
+        _context = context;
+        ExpenseCategories = new SelectList(Enum.GetValues<ExpenseCategory>());
+    }
 
-        public CreateModel(FamilyBudgetDbContext context)
-        {
-            _context = context;
-            ExpenseCategories = new SelectList(Enum.GetValues<ExpenseCategory>());
-        }
+    public IActionResult OnGet()
+    {
+        ViewData["FamilyBudgetUserId"] = new SelectList(_context.Users, "Id", "Id");
+        return Page();
+    }
 
-        public IActionResult OnGet()
+    [BindProperty]
+    public Expense Expense { get; set; } = default!;
+
+    public SelectList ExpenseCategories { get; }
+
+    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (!ModelState.IsValid || _context.Expenses == null || Expense == null)
         {
-            ViewData["FamilyBudgetUserId"] = new SelectList(_context.Users, "Id", "Id");
             return Page();
         }
 
-        [BindProperty]
-        public Expense Expense { get; set; } = default!;
+        var currentUserId = await _context.Users
+            .Where(x => x.Email == User.Identity.Name)
+            .Select(x => x.Id)
+            .FirstAsync();
 
-        public SelectList ExpenseCategories { get; }
+        Expense.FamilyBudgetUserId = currentUserId;
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid || _context.Expenses == null || Expense == null)
-            {
-                return Page();
-            }
+        _context.Expenses.Add(Expense);
+        await _context.SaveChangesAsync();
 
-            var currentUserId = await _context.Users
-                .Where(x => x.Email == User.Identity.Name)
-                .Select(x => x.Id)
-                .FirstAsync();
-
-            Expense.FamilyBudgetUserId = currentUserId;
-
-            _context.Expenses.Add(Expense);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
-        }
+        return RedirectToPage("./Index");
     }
 }

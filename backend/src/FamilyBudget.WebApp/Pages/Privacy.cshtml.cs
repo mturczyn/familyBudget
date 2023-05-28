@@ -1,20 +1,19 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace FamilyBudget.WebApp.Pages
+namespace FamilyBudget.WebApp.Pages;
+
+[Authorize]
+public class PrivacyModel : PageModel
 {
-    [Authorize]
-    public class PrivacyModel : PageModel
+    private readonly ILogger<PrivacyModel> _logger;
+
+    public PrivacyModel(ILogger<PrivacyModel> logger)
     {
-        private readonly ILogger<PrivacyModel> _logger;
+        _logger = logger;
+    }
 
-        public PrivacyModel(ILogger<PrivacyModel> logger)
-        {
-            _logger = logger;
-        }
-
-        public void OnGet()
-        {
-        }
+    public void OnGet()
+    {
     }
 }
