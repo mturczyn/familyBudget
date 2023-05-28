@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using FamilyBudget.DAL.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using FamilyBudget.DAL;
-using FamilyBudget.DAL.Data;
 
 namespace FamilyBudget.WebApp.Pages.Expenses
 {
@@ -19,7 +14,7 @@ namespace FamilyBudget.WebApp.Pages.Expenses
             _context = context;
         }
 
-      public Expense Expense { get; set; } = default!; 
+        public Expense Expense { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -33,7 +28,7 @@ namespace FamilyBudget.WebApp.Pages.Expenses
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Expense = expense;
             }

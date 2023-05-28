@@ -1,11 +1,9 @@
 using AutoFixture;
 using FamilyBudget.DAL;
 using FamilyBudget.WebApp.Pages.Expenses;
-using FamilyBudget.WebApp.Pages.ViewObjects.Users;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Build.Logging;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using System.Security.Claims;
@@ -13,11 +11,11 @@ using System.Security.Principal;
 
 namespace FamilyBudget.Tests
 {
-    public class UnitTest1
+    public class ShareWithOtherModelTests
     {
         private readonly IFixture _autoFixture = new Fixture();
 
-        public UnitTest1()
+        public ShareWithOtherModelTests()
         {
             _autoFixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
@@ -36,7 +34,7 @@ namespace FamilyBudget.Tests
             currentUser.UserName = userName;
             var otherUser = _autoFixture.Create<FamilyBudgetUser>();
 
-            context.AddRange(new[] {currentUser, otherUser});
+            context.AddRange(new[] { currentUser, otherUser });
             context.SaveChanges();
 
             var identityMock = _autoFixture.Create<Mock<IIdentity>>();

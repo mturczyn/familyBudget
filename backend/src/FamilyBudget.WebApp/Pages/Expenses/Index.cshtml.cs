@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Security;
 
 namespace FamilyBudget.WebApp.Pages.Expenses
 {
@@ -66,8 +65,8 @@ namespace FamilyBudget.WebApp.Pages.Expenses
 
             const int pageSize = 5;
             Expenses = await PaginatedList<Expense>.CreateAsync(
-                query.Include(x => x.FamilyBudgetUser), 
-                pageNumber ?? 1, 
+                query.Include(x => x.FamilyBudgetUser),
+                pageNumber ?? 1,
                 pageSize);
         }
 
