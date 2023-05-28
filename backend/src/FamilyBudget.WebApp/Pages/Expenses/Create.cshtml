@@ -1,4 +1,5 @@
 ﻿@page
+@using FamilyBudget.DAL;
 @model FamilyBudget.WebApp.Pages.Expenses.CreateModel
 
 @{
@@ -26,9 +27,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="Expense.Category" class="control-label"></label>
-                <input asp-for="Expense.Category" class="form-control" />
+                <select asp-for="Expense.Category" asp-items="Html.GetEnumSelectList<ExpenseCategory>()" class="form-control"></select>
                 <span asp-validation-for="Expense.Category" class="text-danger"></span>
             </div>
+
+
             <div class="form-group">
                 <label asp-for="Expense.AmountSpent" class="control-label"></label>
                 <input asp-for="Expense.AmountSpent" class="form-control" />

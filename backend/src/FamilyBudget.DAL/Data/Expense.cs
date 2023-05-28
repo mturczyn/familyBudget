@@ -12,8 +12,7 @@ public class Expense
 
     public string Description { get; set; }
 
-#warning introduce enum for that
-    public string Category { get; set; }
+    public ExpenseCategory Category { get; set; }
 
     public double AmountSpent { get; set; }
 

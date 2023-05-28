@@ -21,7 +21,7 @@ namespace FamilyBudget.WebApp.Pages.Expenses
         [BindProperty]
         public IList<UserDto> Users { get; set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(CancellationToken cancellationToken)
         {
             if (_context.Users is null)
             {
@@ -31,11 +31,11 @@ namespace FamilyBudget.WebApp.Pages.Expenses
             var sharedWith = await _context.Users
                 .Where(x => x.UserName == User.Identity.Name)
                 .SelectMany(x => x.ExpensesSharedWith)
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
 
             var users = await _context.Users
                 .Where(x => x.UserName != User.Identity.Name)
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
 
             Users = users
                 .Select(x => new UserDto()
