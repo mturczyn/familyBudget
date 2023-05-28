@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  familybudget.webapp:
+    image: ${DOCKER_REGISTRY-}familybudgetwebapp
+    build:
+      context: .
+      dockerfile: src/FamilyBudget.WebApp/Dockerfile
+  familybudget.sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - SA_PASSWORD=MyStrong!Password
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"
