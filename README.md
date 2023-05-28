@@ -1,9 +1,21 @@
 # FamilyBudget
 
-After downloading this repository follow steps:
+After downloading this repository open solution in Visual Studio and select `docker-compose` as startup project.
 
-1. run `docker-compose up` command to install necessary Docker images. This will install images for database as well as ASP.NET application.
+It may take while to install all necessary images for SQL server and ASP.NET.
 
-2. Apply all migrations from `FamilyBudget.DAL` project.
+After all necessary installation is complete there should be two containers running:
 
-3. You should now be able to run and use the application.
+![docker containers](docker-containers.png)
+
+After that step is coplete, go to Package Manager Console in Visual Studio and run following command
+
+```
+Update-Database -Project FamilyBudget.DAL -StartupProject FamilyBudget.WebApp
+```
+
+If everything went correctly, there should be below output in console:
+
+![successful migration](successful-migration.png)
+
+Now application can be run in Visual Studio (F5).
