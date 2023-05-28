@@ -1,6 +1,7 @@
 ﻿using FamilyBudget.DAL;
 using FamilyBudget.DAL.Data;
 using FamilyBudget.WebApp.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -9,6 +10,7 @@ using System.Security;
 
 namespace FamilyBudget.WebApp.Pages.Expenses
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly FamilyBudgetDbContext _context;
