@@ -16,7 +16,6 @@ public class CreateModel : PageModel
     public CreateModel(FamilyBudgetDbContext context)
     {
         _context = context;
-        ExpenseCategories = new SelectList(Enum.GetValues<ExpenseCategory>());
     }
 
     public IActionResult OnGet()
@@ -27,8 +26,6 @@ public class CreateModel : PageModel
 
     [BindProperty]
     public Expense Expense { get; set; } = default!;
-
-    public SelectList ExpenseCategories { get; }
 
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task<IActionResult> OnPostAsync()
