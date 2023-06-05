@@ -17,9 +17,16 @@ namespace FamilyBudget.Tests
 
         public ShareWithOtherModelTests()
         {
+            // Also we could define Customization to ignore navigation properties that cause
+            // recursion exception.
             _autoFixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
+        // If we would apply more loosely coupled classes behind interfaces, it would simplify
+        // the tests.
+        // On the other hand Arrange section contains some boiler plate code that could be moved 
+        // to some utility class or at least to private method allowing easy arrange for
+        // each similair test.
         [Fact]
         public async Task GetSharedExpensesForUser_WhenUserHasNoSharedExpenses_ReturnsUsersWithFlagSetToFalse()
         {

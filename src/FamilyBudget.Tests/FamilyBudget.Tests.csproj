@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\FamilyBudget.WebApp\FamilyBudget.WebApp.csproj" />
+    <ProjectReference Include="..\FamilyBudget.WebApp\FamilyBudget.WebApp.csproj" />
   </ItemGroup>
 
 </Project>

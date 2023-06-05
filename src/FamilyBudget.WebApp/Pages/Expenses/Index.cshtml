@@ -17,7 +17,15 @@
         <div class="form-actions no-color">
             <p>
                 Find by description or title: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-                <input type="submit" value="Search" class="btn btn-default" /> |
+            </p>
+            <p>
+                Find by user: 
+                <select name="SearchUser" asp-for="@ViewData["CurrentSearchUser"]" asp-items="@ViewData["SharingUsers"] as SelectList">
+                    <option value="" label="Filter by user..."></option>
+                </select>
+            </p>
+            <p>
+                <input type="submit" value="Search" class="btn btn-default search-button" />
                 <a asp-action="Index">Back to Full List</a>
             </p>
         </div>

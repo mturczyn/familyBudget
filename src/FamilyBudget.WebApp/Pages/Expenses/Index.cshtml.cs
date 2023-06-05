@@ -3,6 +3,7 @@ using FamilyBudget.DAL.Data;
 using FamilyBudget.WebApp.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -25,6 +26,7 @@ public class IndexModel : PageModel
     public async Task OnGetAsync(string sortOrder,
         string searchString,
         int? pageNumber,
+        string searchUser,
         CancellationToken cancellationToken)
     {
         if (_context.Expenses is null)
@@ -32,12 +34,22 @@ public class IndexModel : PageModel
             return;
         }
 
+        var sharingUsers = await _context.UserExpenseSharingOptions
+                .Where(x => x.SharedWithUser.UserName == User.Identity.Name)
+                .Select(x => x.FamilyBudgetUser.UserName)
+                .ToArrayAsync();
+
+        ViewData["SharingUsers"] = new SelectList(sharingUsers);
+
         PrepareAllOrderParams(sortOrder);
         ViewData["CurrentSort"] = sortOrder;
         var currentFilter = ViewData["CurrentFilter"]?.ToString();
         ViewData["CurrentFilter"] = searchString;
 
-        if (searchString != currentFilter)
+        var currentSearchUser = ViewData["CurrentSearchUser"]?.ToString();
+        ViewData["CurrentSearchUser"] = searchUser;
+
+        if (searchString != currentFilter || currentSearchUser != searchUser)
         {
             pageNumber = 1;
         }
@@ -61,6 +73,11 @@ public class IndexModel : PageModel
         {
             query = query.Where(x => x.Title.Contains(searchString)
                 || x.Description.Contains(searchString));
+        }
+
+        if (!string.IsNullOrEmpty(searchUser))
+        {
+            query = query.Where(x => x.FamilyBudgetUser.UserName == searchUser);
         }
 
         const int pageSize = 5;
