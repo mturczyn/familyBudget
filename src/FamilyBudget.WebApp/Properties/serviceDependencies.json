@@ -1,12 +1,17 @@
 {
   "dependencies": {
     "mssql1": {
+      "ignored": "true",
       "type": "mssql",
       "connectionId": "ConnectionStrings:DefaultConnection"
     },
-    "mssql2": {
+    "mssql3": {
       "type": "mssql",
-      "connectionId": "ConnectionStrings:FamilyBudgetWebAppContextConnection"
+      "connectionId": "ConnectionStrings:FamilyBudgetAzureSql"
+    },
+    "mssql4": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:FamilyBudgetAzureSqlServerDatabase"
     }
   }
 }

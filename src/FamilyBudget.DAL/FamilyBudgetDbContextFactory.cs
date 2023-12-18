@@ -8,7 +8,7 @@ namespace FamilyBudget.DAL
         public FamilyBudgetDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<FamilyBudgetDbContext>();
-            optionsBuilder.UseSqlServer("Server=.;Database=FamilyBudget;User Id=sa;Password=MyStrong!Password;MultipleActiveResultSets=true;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("");
 
             return new FamilyBudgetDbContext(optionsBuilder.Options);
         }

@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "ignored": "true",
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:FamilyBudgetWebAppContextConnection"
+    },
+    "mssql3": {
+      "ignored": "true",
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:FamilyBudgetAzureSql"
+    },
+    "mssql4": {
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/familybudgetwebappazuredbserver/databases/FamilyBudget.WebApp_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:FamilyBudgetAzureSqlServerDatabase"
+    }
+  }
+}
